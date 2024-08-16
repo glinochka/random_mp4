@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Подтвердить</title>
+        <link rel="stylesheet" href="{% static 'registr/style.css' %}">
+    </head>
+    <body>
+        {%if 'del' in req%}
+        
+            <form  action="#" method="post">
+                <legend> Удалить {{x.file}}?</legend>
+                {% csrf_token %}
+                <div class="del">
+                    <video width="400" controls >
+                        <source src="{{x.file.url}}" type="video/mp4">
+                    </video></div>
+                <button  name="delis" value="{{x.file}}" type="submit" >удалить</button>
+
+            </form>
+            <a href="{%url 'home'%}"><button>отмена</button></a>
+            <p></p>
+        {%else%}
+            <a href="{%url 'home'%}"><button>вернуться</button></a>
+            <head>
+                <meta http-equiv='refresh' content='0; URL={%url "home"%}'>
+            </head>
+        {%endif%}
+
+    </body>
+</html>

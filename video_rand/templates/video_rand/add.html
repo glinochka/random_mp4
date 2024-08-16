@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Добавить</title>
+        <link rel="stylesheet" href="{% static 'registr/style.css' %}">
+    </head>
+    <body>
+         
+
+        <form method="post" action="#" enctype="multipart/form-data">{% csrf_token %}
+          <fieldset >
+            <legend>Ваше видео</legend>
+            <label class="input-file">
+                <input type="file" name="file">		
+                <span>Выберите файл</span>
+            </label>
+            <button type="submit">Отправить</button>
+          </fieldset>
+        </form>
+        <button><a href="{% url 'home' %}">Назад</a></button>
+
+    </body>
+</html>

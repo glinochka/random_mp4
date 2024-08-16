@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список</title>
+    <link rel="stylesheet" href="{% static 'registr/style.css' %}">
+    <style>
+        ::-webkit-scrollbar {
+            width: 0;
+        }     
+    </style>
+   
+</head>
+    <body>
+        {%if info%}
+            <button>{{info}}</button>
+        {%else%}
+        <li><form action="" method="post">{% csrf_token %}
+            <button name = "info" value="0" type="submit">длинна плейлиста</button>
+          </form></li>
+        {%endif%}
+        <p>{{x}}</p>
+        <a href="{% url 'home' %}"><button>домой</button> </a>
+        
+        {%for video in videos%}
+         <div class="video"> <li><a href="{{video.file.url}}" target="_blank">{{video.file}}</a> </li>
+            <form  action="{%url 'submit'%}" method="post" target="_self">
+                {% csrf_token %}
+                <button  name="del" value="{{video.file}}" type="submit"  >удалить</button></form>
+            <video height="200" controls >
+                <source src="{{video.file.url}}" type="video/mp4">
+            </video></div> 
+
+        {%endfor%}
+
+    </body>
+</html>
