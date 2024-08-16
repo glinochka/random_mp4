@@ -1,0 +1,65 @@
+<!doctype html>
+{% load static %}
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>random_mp4</title>
+    <link rel="stylesheet" href="{% static 'registr/style.css' %}">
+    <style>
+      .bottom{
+        position: absolute;
+        bottom: 0%;
+      }
+    </style>
+  
+  
+  
+  
+  </head>
+  {%if user == 'Guest'%}
+  <body>
+      <h1>Здраствуй, {{user}}</h1>
+
+        <a href="{%url 'login'%}">
+          <button>ВХОД</button>
+        </a>
+
+
+        
+
+        
+
+    
+    
+  {%else%}
+    
+      <h1>Здраствуй, {{user}}</h1>
+     <nav>
+      
+      <li><form  action="{% url 'watch' %}" method="post">{% csrf_token %}
+        
+        <button  name="enter" value="0" type="submit"  >НАЧАТЬ ПРОСМОТР</button></form></li>
+        
+      <li><form action="" method="post">{% csrf_token %}
+        <button name = "enter" value="0" type="submit">ОБНОВИТЬ ПЛЕЙЛИСТ</button>
+      </form></li>  
+      
+
+      <li><a href="{% url 'add' %}"><button>ДОБАВИТЬ ФАЙЛ</button></a></li>
+
+      <li><a href="{% url 'listof' %}"><button>СПИСОК ВИДЕО</button></a></li>
+
+      <li><a href="#"><form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+         <button type="submit" class="btn btn-success">ВЫЙТИ</button>
+     </form></a></li>
+      
+      <div class="animation start-home"></div>
+    </nav>
+  {%endif%}
+  <a href="/admin"><button class="bottom">админка</button> </a>
+  </body>
+  
+    
+</html>
